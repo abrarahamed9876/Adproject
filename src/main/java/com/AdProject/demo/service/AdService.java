@@ -18,11 +18,13 @@ public class AdService {
         
         
         if (adStatus.equals("true")){
+            System.out.println("inside service ---status is "+adStatus);
            
             return "Ad blocker is enabled";
             
         }
         else if (adStatus.equals("false")){
+            System.out.println("inside service ---status is "+adStatus);
             return "Ad blocker is disabled";
             
             

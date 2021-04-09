@@ -5,6 +5,7 @@
  */
 package com.AdProject.demo.controller;
 
+import com.AdProject.demo.model.StatusModel;
 import com.AdProject.demo.service.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,27 +37,23 @@ public class AdController {
     
     
 
-        @GetMapping("/status/{adStatus}")
-    public ResponseEntity<String> getStatus(@PathVariable String adStatus) {
-        System.out.println("--------------fetching current page status");
+        @PostMapping("/status")
+
+    public ResponseEntity<String> getStatus(@RequestBody StatusModel statusModel) {
         
-      status= adService.fetchAdBlockStatus(adStatus);
-           
-       
+      status= adService.fetchAdBlockStatus(statusModel.getStatus());
+     
         return new ResponseEntity<>(status, HttpStatus.OK);
     }
     
     
+
     
     
     
     
-      @GetMapping("/changestatus")
-    public ResponseEntity<String> changeStatus() {
-        System.out.println("--------------changing the page status");
-      status="Adblocker is not enabled";
-        return new ResponseEntity<>(status, HttpStatus.OK);
-    }
+    
+    
     
      @GetMapping("/1")
     public String welcome() {
